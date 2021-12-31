@@ -1,11 +1,16 @@
 package com.rnv.batalhaNaval.view;
 
+import com.rnv.batalhaNaval.controller.BatalhaNaval;
+import com.rnv.batalhaNaval.domain.Jogo;
+
 import java.util.Scanner;
 
 public class BatalhaNavalView {
 
     private char[] linhas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
     private char[][] grade = new char[10][10];
+    private Jogo jogo;
+    private BatalhaNaval bnvController = new BatalhaNaval();
 
     public void showHeader() {
         System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
@@ -58,6 +63,8 @@ public class BatalhaNavalView {
                 grade[l][c] = ' ';
             }
         }
+        this.jogo = new NovoJogoView().create();
+
         this.showGrade();
     }
     public void show() {
