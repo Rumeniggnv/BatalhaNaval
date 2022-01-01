@@ -30,16 +30,16 @@ public class BatalhaNaval {
     private void prepareTabuleiro(Tabuleiro tabuleiro) {
         HashSet<ArrayList<Integer>> paresEscolhidos = new HashSet<>();
 
-        //Gera 11 pares de valores inteiros randômicos sem repetição
+        //Gera 10 pares de valores inteiros randômicos sem repetição
         do {
             int linhaRandom = new Random().nextInt(Tabuleiro.NUM_LINHAS);
             int colunaRandom = new Random().nextInt(Tabuleiro.NUM_COLUNAS);
             ArrayList<Integer> par = new ArrayList<>(){{add(linhaRandom); add(colunaRandom);}};
 
             paresEscolhidos.add(par);
-        } while (paresEscolhidos.size() < 11);
+        } while (paresEscolhidos.size() < 10);
 
-        //Adiciona 11 navios (submarinos) em posições aleatórias
+        //Adiciona 10 navios (submarinos) em posições aleatórias
         for (ArrayList<Integer> par: paresEscolhidos) {
             tabuleiro.setGridPosValue(par.get(0),par.get(1),'N');
         }
