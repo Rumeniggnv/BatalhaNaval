@@ -21,6 +21,14 @@ public class Tabuleiro {
         this.grid = grid;
     }
 
+    public char getGridPosValue(int linha, int coluna) {
+        return grid[linha][coluna];
+    }
+
+    public void setGridPosValue(int linha, int coluna, char value) {
+        this.grid[linha][coluna] = value;
+    }
+
     @Override
     public String toString() {
         String strTabuleiro = "";
