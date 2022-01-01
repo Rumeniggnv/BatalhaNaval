@@ -7,9 +7,8 @@ import java.util.Scanner;
 
 public class BatalhaNavalView {
 
-    private char[] linhas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-    private char[][] grade = new char[10][10];
-    private Jogo jogo;
+//    private char[] linhas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+//    private char[][] grade = new char[10][10];
     private BatalhaNaval bnvController = new BatalhaNaval();
 
     public void showHeader() {
@@ -37,33 +36,34 @@ public class BatalhaNavalView {
         System.out.println("---------------------------------------------");
         System.out.println("                J O G A D O R                ");
         System.out.println("---------------------------------------------");
-        //System.out.println("|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n");
-        System.out.print("|   |");
-        for ( int i = 0; i < 10; i++) {
-            System.out.printf(" %d |", i);
-            if ( i == 9 ) System.out.println();
-        }
-        System.out.println("---------------------------------------------");
-        //Desenha a garde
-        for ( int l = 0; l < grade.length; l++ ) {
-            System.out.printf("| %s |", linhas[l]);
-            for ( int c = 0; c < grade.length; c++ ) {
-                System.out.printf(" %s |", grade[l][c]);
-                if ( c == 9 ) System.out.println();
-            }
-            System.out.println("---------------------------------------------");
-
-        }
+//        //System.out.println("|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n");
+//        System.out.print("|   |");
+//        for ( int i = 0; i < 10; i++) {
+//            System.out.printf(" %d |", i);
+//            if ( i == 9 ) System.out.println();
+//        }
+//        System.out.println("---------------------------------------------");
+//        //Desenha a garde
+//        for ( int l = 0; l < grade.length; l++ ) {
+//            System.out.printf("| %s |", linhas[l]);
+//            for ( int c = 0; c < grade.length; c++ ) {
+//                System.out.printf(" %s |", grade[l][c]);
+//                if ( c == 9 ) System.out.println();
+//            }
+//            System.out.println("---------------------------------------------");
+//
+//        }
+        System.out.println(bnvController.getJogo().getJogador().getTabuleiro().toString());
     }
 
     private void play() {
         System.out.println("Novo Jogo");
-        for ( int l = 0; l < grade.length; l++ ) {
-            for ( int c = 0; c < grade.length; c++ ) {
-                grade[l][c] = ' ';
-            }
-        }
-        this.jogo = new NovoJogoView().create();
+//        for ( int l = 0; l < grade.length; l++ ) {
+//            for ( int c = 0; c < grade.length; c++ ) {
+//                grade[l][c] = ' ';
+//            }
+//        }
+        bnvController.setJogo(new NovoJogoView().create());
 
         this.showGrade();
     }
@@ -85,8 +85,5 @@ public class BatalhaNavalView {
                     System.out.println("Opção inválida, tente novamente!");
             }
         } while (loop);
-
-
-
     }
 }
