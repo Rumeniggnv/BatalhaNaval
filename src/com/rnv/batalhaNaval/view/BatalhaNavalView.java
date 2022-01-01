@@ -55,10 +55,10 @@ public class BatalhaNavalView {
 //        }
         System.out.println(bnvController.getJogo().getJogador().getTabuleiro().toString());
 
-        System.out.println("---------------------------------------------");
-        System.out.println("                " + bnvController.getJogo().getComputador().getName() + "                ");
-        System.out.println("---------------------------------------------");
-        System.out.println(bnvController.getJogo().getComputador().getTabuleiro().toString());
+//        System.out.println("---------------------------------------------");
+//        System.out.println("                " + bnvController.getJogo().getComputador().getName() + "                ");
+//        System.out.println("---------------------------------------------");
+//        System.out.println(bnvController.getJogo().getComputador().getTabuleiro().toString());
     }
 
     private void play() {
