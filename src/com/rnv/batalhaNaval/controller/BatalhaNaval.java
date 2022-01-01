@@ -24,6 +24,7 @@ public class BatalhaNaval {
 
     public void prepareJogo() {
         prepareTabuleiro(this.jogo.getJogador().getTabuleiro());
+        prepareTabuleiro(this.jogo.getComputador().getTabuleiro());
     }
 
     private void prepareTabuleiro(Tabuleiro tabuleiro) {
@@ -41,7 +42,6 @@ public class BatalhaNaval {
         //Adiciona 11 navios (submarinos) em posições aleatórias
         for (ArrayList<Integer> par: paresEscolhidos) {
             tabuleiro.setGridPosValue(par.get(0),par.get(1),'N');
-            System.out.println(par);
         }
     }
 }
