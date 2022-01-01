@@ -63,6 +63,7 @@ public class BatalhaNavalView {
 //            }
 //        }
         bnvController.setJogo(new NovoJogoView().create());
+        bnvController.prepareJogo();
 
         this.showGrade();
     }
