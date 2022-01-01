@@ -33,7 +33,8 @@ public class BatalhaNavalView {
 
     private void showGrade() {
         System.out.println("---------------------------------------------");
-        System.out.println("                J O G A D O R                ");
+//        System.out.println("                J O G A D O R                ");
+        System.out.println("                " + bnvController.getJogo().getJogador().getName() + "                ");
         System.out.println("---------------------------------------------");
 //        //System.out.println("|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n");
 //        System.out.print("|   |");
@@ -53,6 +54,11 @@ public class BatalhaNavalView {
 //
 //        }
         System.out.println(bnvController.getJogo().getJogador().getTabuleiro().toString());
+
+        System.out.println("---------------------------------------------");
+        System.out.println("                " + bnvController.getJogo().getComputador().getName() + "                ");
+        System.out.println("---------------------------------------------");
+        System.out.println(bnvController.getJogo().getComputador().getTabuleiro().toString());
     }
 
     private void play() {
