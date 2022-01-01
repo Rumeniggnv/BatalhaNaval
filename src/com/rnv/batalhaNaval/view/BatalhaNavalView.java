@@ -1,7 +1,6 @@
 package com.rnv.batalhaNaval.view;
 
 import com.rnv.batalhaNaval.controller.BatalhaNaval;
-import com.rnv.batalhaNaval.domain.Jogo;
 
 import java.util.Scanner;
 
