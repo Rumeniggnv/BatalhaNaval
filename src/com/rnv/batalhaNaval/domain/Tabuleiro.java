@@ -1,9 +1,9 @@
 package com.rnv.batalhaNaval.domain;
 
 public class Tabuleiro {
-    private final int NUM_LINHAS = 10;
-    private final int NUM_COLUNAS = 10;
-    private final char[] LABEL_LINHAS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+    public static final int NUM_LINHAS = 10;
+    public static final int NUM_COLUNAS = 10;
+    public static final char[] LABEL_LINHAS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
     private char[][] grid = new char[NUM_LINHAS][NUM_COLUNAS];
 
