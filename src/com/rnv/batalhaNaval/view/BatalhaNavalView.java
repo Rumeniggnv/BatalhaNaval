@@ -5,9 +5,6 @@ import com.rnv.batalhaNaval.controller.BatalhaNaval;
 import java.util.Scanner;
 
 public class BatalhaNavalView {
-
-//    private char[] linhas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-//    private char[][] grade = new char[10][10];
     private BatalhaNaval bnvController = new BatalhaNaval();
 
     public void showHeader() {
@@ -33,44 +30,45 @@ public class BatalhaNavalView {
 
     private void showGrade() {
         System.out.println("---------------------------------------------");
-//        System.out.println("                J O G A D O R                ");
         System.out.println("                " + bnvController.getJogo().getJogador().getName() + "                ");
         System.out.println("---------------------------------------------");
-//        //System.out.println("|   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n");
-//        System.out.print("|   |");
-//        for ( int i = 0; i < 10; i++) {
-//            System.out.printf(" %d |", i);
-//            if ( i == 9 ) System.out.println();
-//        }
-//        System.out.println("---------------------------------------------");
-//        //Desenha a garde
-//        for ( int l = 0; l < grade.length; l++ ) {
-//            System.out.printf("| %s |", linhas[l]);
-//            for ( int c = 0; c < grade.length; c++ ) {
-//                System.out.printf(" %s |", grade[l][c]);
-//                if ( c == 9 ) System.out.println();
-//            }
-//            System.out.println("---------------------------------------------");
-//
-//        }
         System.out.println(bnvController.getJogo().getJogador().getTabuleiro().toString());
-
-//        System.out.println("---------------------------------------------");
-//        System.out.println("                " + bnvController.getJogo().getComputador().getName() + "                ");
-//        System.out.println("---------------------------------------------");
-//        System.out.println(bnvController.getJogo().getComputador().getTabuleiro().toString());
     }
 
     private void play() {
+        Scanner scan = new Scanner(System.in);
+        String resposta;
         System.out.println("Novo Jogo");
-//        for ( int l = 0; l < grade.length; l++ ) {
-//            for ( int c = 0; c < grade.length; c++ ) {
-//                grade[l][c] = ' ';
-//            }
-//        }
         bnvController.setJogo(new NovoJogoView().create());
-        bnvController.prepareJogo();
+        System.out.println("Deseja escolher as posições dos navios manualmente? SIM ou NAO");
+        resposta = scan.next();
 
+        if (resposta.toUpperCase().equals("SIM")){
+            Integer linha;
+            Integer coluna;
+            for(int i = 0; i < 10; i++){
+                System.out.println("Informe uma linha de 0 a 9");
+                linha = scan.nextInt();
+                System.out.println("Informe uma coluna de 0 a 9");
+                coluna = scan.nextInt();
+
+                while(linha > 9 || coluna > 9 ) {
+                    if(linha > 9){
+                        System.out.println("linha inválida, tente novamente");
+                        linha = scan.nextInt();
+                    }
+                    if(coluna > 9){
+                        System.out.println("coluna inválida, tente novamente");
+                        coluna = scan.nextInt();
+                    }
+                }
+                bnvController.prepareTabuleiroManualJogador(bnvController.getJogo().getJogador().getTabuleiro(), linha, coluna);
+                System.out.printf("Inserido em linha: %s coluna: %s%n", linha, coluna);
+            }
+            bnvController.prepareTabuleiroManualComputador();
+        }else{
+            bnvController.prepareJogoAutomatico();
+        }
         this.showGrade();
     }
     public void show() {
