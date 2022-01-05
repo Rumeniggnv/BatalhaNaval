@@ -1,6 +1,7 @@
 package com.rnv.batalhaNaval.view;
 
 import com.rnv.batalhaNaval.controller.BatalhaNaval;
+import com.rnv.batalhaNaval.domain.Tabuleiro;
 
 import java.util.Scanner;
 
@@ -40,14 +41,16 @@ public class BatalhaNavalView {
         String resposta;
         System.out.println("Novo Jogo");
         bnvController.setJogo(new NovoJogoView().create());
-        System.out.println("Deseja escolher as posições dos navios manualmente? SIM ou NAO");
+        System.out.println("Deseja posicionar os navios manualmente (S/N)?");
         resposta = scan.next();
 
-        if (resposta.toUpperCase().equals("SIM")){
-            Integer linha;
-            Integer coluna;
+        if (resposta.equalsIgnoreCase("s")){
+            int linha;
+            int coluna;
+            this.showGrade();
+
             for(int i = 0; i < 10; i++){
-                System.out.println("Informe uma linha de 0 a 9");
+                /*System.out.printf("Informe a posição do %dº navio. Ex.(A0/a0): ", i+1);
                 linha = scan.nextInt();
                 System.out.println("Informe uma coluna de 0 a 9");
                 coluna = scan.nextInt();
@@ -61,9 +64,17 @@ public class BatalhaNavalView {
                         System.out.println("coluna inválida, tente novamente");
                         coluna = scan.nextInt();
                     }
-                }
+                }*/
+                //Delega a classe NovoJogoView para perguntar e validar as posições e as retorna.
+                String pos = new NovoJogoView().askPosicao(i);
+                //Converte a letra da linha para a posição coorrespondente do array LABEL_LINHAS
+                linha = String.valueOf( Tabuleiro.LABEL_LINHAS ).indexOf( pos.toUpperCase().charAt(0) );
+                //Pega o número da coluna
+                coluna = Integer.parseInt( pos.substring(1) );
+
                 bnvController.prepareTabuleiroManualJogador(bnvController.getJogo().getJogador().getTabuleiro(), linha, coluna);
                 System.out.printf("Inserido em linha: %s coluna: %s%n", linha, coluna);
+                this.showGrade();
             }
             bnvController.prepareTabuleiroManualComputador();
         }else{
