@@ -22,7 +22,7 @@ public class BatalhaNaval {
         this.jogo = jogo;
     }
 
-    public void prepareJogo() {
+    public void prepareJogoAutomatico() {
         prepareTabuleiro(this.jogo.getJogador().getTabuleiro());
         prepareTabuleiro(this.jogo.getComputador().getTabuleiro());
     }
@@ -43,5 +43,11 @@ public class BatalhaNaval {
         for (ArrayList<Integer> par: paresEscolhidos) {
             tabuleiro.setGridPosValue(par.get(0),par.get(1),'N');
         }
+    }
+    public void prepareTabuleiroManualComputador(){
+        prepareTabuleiro(this.jogo.getComputador().getTabuleiro());
+    }
+    public void prepareTabuleiroManualJogador(Tabuleiro tabuleiro, int linha, int coluna){
+        tabuleiro.setGridPosValue(linha, coluna, 'N');
     }
 }
