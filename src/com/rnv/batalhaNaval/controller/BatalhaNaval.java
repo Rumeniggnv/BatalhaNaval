@@ -80,26 +80,27 @@ public class BatalhaNaval {
         String vPosComputador = String.valueOf(this.getJogo().getComputador().getTabuleiro().getGridPosValue(linha, coluna));
         String vPosJogador = String.valueOf(this.getJogo().getJogador().getTabuleiro().getGridPosValue(linha, coluna));
 
-
-        //Se na posição do tiro/jogada tiver um navio do computador
-        if ( vPosComputador.equals("N") ) {
+        if ( vPosComputador.equals("N")|| vPosComputador.equals("n") || vPosComputador.equals("X") ) {
             this.acertosJogador++;
-            //Se na posição do tiro/jogada também tiver um navio do jogador
-            if ( vPosJogador.equals("N") ) {
-                //Então foi um tiro certeiro com navio posicionado, o GRID do Jogador recebe 'X'
+
+            if (vPosComputador.equals("N")){
+                this.getJogo().getComputador().getTabuleiro().setGridPosValue(linha, coluna, ' ');
+            } else if(vPosComputador.equals("n")) {
+                this.getJogo().getComputador().getTabuleiro().setGridPosValue(linha, coluna, '-');
+            } else if (vPosComputador.equals("X")){
+                this.getJogo().getComputador().getTabuleiro().setGridPosValue(linha, coluna, '*');
+            }
+
+            if (vPosJogador.equals("N")) {
                 this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = 'X';
             } else {
-                //Senão foi um tiro certeiro sem navio posicionado, o GRID do Jogador recebe '*'
-                this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = '*';
+            this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = '*';
             }
         } else if ( vPosJogador.equals("N") ) {
-                //Senão tiver posicionado navio do computador mas tiver posicionado navio do Jogador
-                //Então foi tiro na água mas tem navio do Jogador, o GRID do Jogador recebe 'n'
-                this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = 'n';
-            } else {
-                //Senão foi tiro na água e não tem navio do Jogador posicionado
-                this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = '-';
-            }
+            this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = 'n';
+        } else {
+            this.getJogo().getJogador().getTabuleiro().getGrid()[linha][coluna] = '-';
+        }
         this.jogadas++;
     }
 
@@ -119,23 +120,25 @@ public class BatalhaNaval {
         String vPosComputador = String.valueOf(this.getJogo().getComputador().getTabuleiro().getGridPosValue(linha, coluna));
         String vPosJogador = String.valueOf(this.getJogo().getJogador().getTabuleiro().getGridPosValue(linha, coluna));
 
-        //Se na posição do tiro/jogada tiver um navio do Jogador
-        if ( vPosJogador.equals("N") ) {
+        if ( vPosJogador.equals("N")|| vPosJogador.equals("n") || vPosComputador.equals("X") ) {
             this.acertosComputador++;
-            //Se na posição do tiro/jogada também tiver um navio do Computador
-            if ( vPosComputador.equals("N") ) {
-                //Então foi um tiro certeiro com navio posicionado, o GRID do Computador recebe 'X'
+
+            if (vPosJogador.equals("N")){
+                this.getJogo().getJogador().getTabuleiro().setGridPosValue(linha, coluna, ' ');
+            } else if(vPosJogador.equals("n")) {
+                this.getJogo().getJogador().getTabuleiro().setGridPosValue(linha, coluna, '-');
+            } else if(vPosJogador.equals("X")){
+                this.getJogo().getJogador().getTabuleiro().setGridPosValue(linha, coluna, '*');
+            }
+            if (vPosComputador.equals("N")) {
                 this.getJogo().getComputador().getTabuleiro().getGrid()[linha][coluna] = 'X';
             } else {
-                //Senão foi um tiro certeiro sem navio posicionado, o GRID do Computador recebe '*'
                 this.getJogo().getComputador().getTabuleiro().getGrid()[linha][coluna] = '*';
             }
+
         } else if ( vPosComputador.equals("N") ) {
-            //Se não tiver posicionado navio do Jogador mas tiver posicionado navio do Computador
-            //Então foi tiro na água mas tem navio do Computador, o GRID do Computador recebe 'n'
             this.getJogo().getComputador().getTabuleiro().getGrid()[linha][coluna] = 'n';
         } else {
-            //Senão foi tiro na água e não tem navio do Computador posicionado
             this.getJogo().getComputador().getTabuleiro().getGrid()[linha][coluna] = '-';
         }
     }

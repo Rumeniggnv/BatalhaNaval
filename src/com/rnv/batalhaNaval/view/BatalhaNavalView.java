@@ -30,11 +30,13 @@ public class BatalhaNavalView {
         System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
     }
 
-    private void showGrade() {
+    private void showGrade(boolean computador) {
         System.out.println("---------------------------------------------");
-        System.out.println("                " + this.bnvController.getJogo().getJogador().getName() + "                ");
+        System.out.println("                " + (computador ? this.bnvController.getJogo().getComputador().getName():
+                this.bnvController.getJogo().getJogador().getName())  + "                ");
         System.out.println("---------------------------------------------");
-        System.out.println(this.bnvController.getJogo().getJogador().getTabuleiro().toString());
+        System.out.println(computador ? this.bnvController.getJogo().getComputador().getTabuleiro().toString() :
+                this.bnvController.getJogo().getJogador().getTabuleiro().toString());
     }
 
     private void positioningShips() {
@@ -45,7 +47,7 @@ public class BatalhaNavalView {
         if (resposta.equalsIgnoreCase("s")){
             int linha;
             int coluna;
-            this.showGrade();
+            this.showGrade(false);
 
             for(int i = 0; i < 10; i++){
                 //Delega a classe NovoJogoView para perguntar e validar as posições e as retorna.
@@ -56,31 +58,36 @@ public class BatalhaNavalView {
                 coluna = Integer.parseInt( pos.substring(1) );
 
                 this.bnvController.prepareTabuleiroManualJogador(this.bnvController.getJogo().getJogador().getTabuleiro(), linha, coluna);
-                this.showGrade();
+                this.showGrade(false);
             }
             this.bnvController.prepareTabuleiroManualComputador();
         }else{
             this.bnvController.prepareJogoAutomatico();
-            this.showGrade();
+            this.showGrade(false);
         }
     }
 
     private void play() {
         System.out.println("Novo Jogo");
         this.positioningShips();
-        //Mostra as posições dos navios do computador para fins de depuração, depois deve sair.
-        System.out.println("--> Computador: " + Arrays.deepToString(this.bnvController.getJogo().getComputador().getTabuleiro().getGrid()));
         System.out.println("Navios estratégicamente posicionados, inicie o seu ataque!");
         do {
             System.out.printf("Jogada: %d\n", this.bnvController.getJogadas());
             String pos = new NovoJogoView(this.bnvController.getJogo()).askPosicao(null);
             //Verifica os tiros/posições
             this.bnvController.checaTiroJogador( pos );
-            this.showGrade();
+            this.showGrade(false);
             this.bnvController.tiroComputador();
-            System.out.println("--> Computador: " + Arrays.deepToString(this.bnvController.getJogo().getComputador().getTabuleiro().getGrid()));
+            this.showGrade(true);
         } while ( !this.bnvController.temNavio() );
-
+        if (this.bnvController.getAcertosComputador() == 10){
+            System.out.printf("%nNão foi dessa vez! O computador venceu =(");
+        }else{
+            System.out.printf("%n Parabéns %s você terrotou o computador!", bnvController.getJogo().getJogador().getName());
+        }
+        System.out.printf("O resultado final da batalha é esse:%n");
+        showGrade(false);
+        showGrade(true);
     }
 
     public void show() {
