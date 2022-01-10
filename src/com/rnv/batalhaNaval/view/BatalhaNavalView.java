@@ -76,9 +76,9 @@ public class BatalhaNavalView {
             String pos = new NovoJogoView(this.bnvController.getJogo()).askPosicao(null);
             //Verifica os tiros/posições
             this.bnvController.checaTiroJogador( pos );
-            this.showGrade(false);
             this.bnvController.tiroComputador();
-            this.showGrade(true);
+            System.out.println(":::: O Computador atirou...");
+            this.showGrade(false);
         } while ( !this.bnvController.temNavio() );
         if (this.bnvController.getAcertosComputador() == 10){
             System.out.printf("%nNão foi dessa vez! O computador venceu =(");

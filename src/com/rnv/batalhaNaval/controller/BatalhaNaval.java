@@ -105,15 +105,14 @@ public class BatalhaNaval {
     }
 
     public void tiroComputador(){
-        System.out.println(":::: O Computador atirou...");
+
         int linhaRandom = new Random().nextInt(Tabuleiro.NUM_LINHAS);
         int colunaRandom = new Random().nextInt(Tabuleiro.NUM_COLUNAS);
-        String valorPosicao = String.valueOf(this.jogo.getJogador().getTabuleiro().getGridPosValue(linhaRandom, colunaRandom));
-        System.out.printf(":::: Atirou na linha: %d, coluna: %d, que tem valor: %s", linhaRandom, colunaRandom, valorPosicao.isBlank() ? "VAZIO" : valorPosicao);
+        String valorPosicao = String.valueOf(this.jogo.getComputador().getTabuleiro().getGridPosValue(linhaRandom, colunaRandom));
+
         if ( valorPosicao.isBlank() || valorPosicao.equals("N")) {
             this.checaTiroComputador(linhaRandom, colunaRandom);
         } else this.tiroComputador();
-
     }
 
     public void checaTiroComputador( int linha, int coluna ) {
