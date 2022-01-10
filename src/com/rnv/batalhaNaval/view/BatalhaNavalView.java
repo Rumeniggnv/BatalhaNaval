@@ -94,11 +94,15 @@ public class BatalhaNavalView {
         if (this.bnvController.getAcertosComputador() == 10){
             System.out.printf("%nNão foi dessa vez! O computador venceu =(");
         }else{
-            System.out.printf("%n Parabéns %s você terrotou o computador!", bnvController.getJogo().getJogador().getName());
+            System.out.printf("%n Parabéns %s você derrotou o computador!", bnvController.getJogo().getJogador().getName());
         }
         System.out.printf("O resultado final da batalha é esse:%n");
         showGrade(false);
         showGrade(true);
+        System.out.print("Pressione qualquer tecla para continuar.");
+        Scanner scan = new Scanner(System.in);
+        scan.nextLine();
+        this.show();
     }
 
     public void show() {
@@ -113,7 +117,7 @@ public class BatalhaNavalView {
                     this.play();
                     break;
                 case "S":
-                    loop = false;
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opção inválida, tente novamente!");

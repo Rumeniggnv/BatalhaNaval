@@ -43,26 +43,37 @@ public class NovoJogoView {
         if ( pos != null ) {
             System.out.printf("Informe a posição do %dº navio. Ex.(A0/a0): ", pos + 1);
             posicao = scan.next();
-            if ( !this.checaSetPosicao(posicao) ) {
-                System.out.println("Um Navio já foi posicionado nessa corrdenada, escolha outra!");
+            boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
+
+            if ( !(posicao.length() == 2 && letra) ) {
+                System.out.println("A posição informada não existe no Tabuleiro, infome novamente!");
                 askPosicao(pos);
-            }
+            } else if ( !this.checaSetPosicao(posicao) ) {
+                        System.out.println("Um Navio já foi posicionado nessa corrdenada, escolha outra!");
+                        askPosicao(pos);
+                }
         } else {
             //Senão quer dizer que é a coordenada de ataque
             System.out.print("Informe a coordenada de ataque. Ex.(A0/a0): ");
             posicao = scan.next();
-            if ( !this.checaTiroPosicao(posicao) ) {
-                System.out.println("Já foi feito um ataque nessa coordenada, escolha outra!");
+            boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
+
+            if ( !(posicao.length() == 2 && letra) ) {
+                System.out.println("A posição informada não existe no Tabuleiro, infome novamente!");
                 askPosicao(pos);
+            } else if (!this.checaTiroPosicao(posicao)) {
+                    System.out.println("Já foi feito um ataque nessa coordenada, escolha outra!");
+                    askPosicao(pos);
+                }
             }
-        }
 
-        boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
 
-        if ( !(posicao.length() < 3 && letra || (int) posicao.charAt(1) < 10) )  {
+        //boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
+
+        /*if ( !(posicao.length() < 3 && letra || (int) posicao.charAt(1) < 10) )  {
             System.out.println("A posição informada não existe no Tabuleiro, infome novamente!");
             askPosicao(pos);
-        }
+        }*/
         return posicao;
     }
 
