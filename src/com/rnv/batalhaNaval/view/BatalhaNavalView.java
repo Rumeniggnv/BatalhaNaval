@@ -39,6 +39,15 @@ public class BatalhaNavalView {
                 this.bnvController.getJogo().getJogador().getTabuleiro().toString());
     }
 
+    private void showLegenda(){
+        System.out.println("LEGENDA\n" +
+                ". Navio posicionado N (ene maiúsculo)\n" +
+                ". Tiro certeiro * (asterisco)\n" +
+                ". Tiro na água – (traço)\n" +
+                ". Tiro certeiro com navio posicionado X (xis maiúsculo)\n" +
+                ". Tiro na água com navio posicionado n (ene minúsculo)");
+    }
+
     private void positioningShips() {
         this.bnvController.setJogo(new NovoJogoView(this.bnvController.getJogo()).create());
         System.out.print("Deseja posicionar os navios manualmente (S/N)? ");
@@ -79,6 +88,8 @@ public class BatalhaNavalView {
             this.bnvController.tiroComputador();
             System.out.println(":::: O Computador atirou...");
             this.showGrade(false);
+            this.showLegenda();
+
         } while ( !this.bnvController.temNavio() );
         if (this.bnvController.getAcertosComputador() == 10){
             System.out.printf("%nNão foi dessa vez! O computador venceu =(");
