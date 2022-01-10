@@ -46,10 +46,13 @@ public class NovoJogoView {
             boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
 
             if ( !(posicao.length() == 2 && letra) ) {
-                System.out.println("A posição informada não existe no Tabuleiro, infome novamente!");
+                System.out.println("A posição informada não existe no Tabuleiro, informe novamente!");
+                askPosicao(pos);
+            } else if ( Character.isLetter(posicao.charAt(1)) ) {
+                System.out.println("A posição informada não existe no Tabuleiro, informe novamente!");
                 askPosicao(pos);
             } else if ( !this.checaSetPosicao(posicao) ) {
-                        System.out.println("Um Navio já foi posicionado nessa corrdenada, escolha outra!");
+                        System.out.println("Um Navio já foi posicionado nessa coordenada, escolha outra!");
                         askPosicao(pos);
                 }
         } else {
@@ -59,7 +62,10 @@ public class NovoJogoView {
             boolean letra = String.valueOf( Tabuleiro.LABEL_LINHAS ).contains( String.valueOf( posicao.toUpperCase().charAt(0) ));
 
             if ( !(posicao.length() == 2 && letra) ) {
-                System.out.println("A posição informada não existe no Tabuleiro, infome novamente!");
+                System.out.println("A posição informada não existe no Tabuleiro, informe novamente!");
+                askPosicao(pos);
+            } else if ( Character.isLetter(posicao.charAt(1)) ) {
+                System.out.println("A posição informada não existe no Tabuleiro, informe novamente!");
                 askPosicao(pos);
             } else if (!this.checaTiroPosicao(posicao)) {
                     System.out.println("Já foi feito um ataque nessa coordenada, escolha outra!");
